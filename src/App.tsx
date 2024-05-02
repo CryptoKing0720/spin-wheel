@@ -1,26 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useRef } from "react";
+import "./App.css";
+import { Wheel } from "spin-wheel-ts";
+
+const wheelItems = [
+  {
+    backgroundColor: "#0057E2",
+  },
+  {
+    backgroundColor: "#41256A",
+  },
+  {
+    backgroundColor: "#2561AE",
+  },
+  {
+    backgroundColor: "#DB0181",
+  },
+  {
+    backgroundColor: "#1F304E",
+  },
+  {
+    backgroundColor: "#E85214",
+  },
+  {
+    backgroundColor: "#014B8D",
+  },
+  {
+    backgroundColor: "#DD1E2D",
+  },
+  {
+    backgroundColor: "#242BB0",
+  },
+  {
+    backgroundColor: "#FFCB04",
+  },
+];
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const wheelRef = useRef<Wheel | null>(null);
+  const handleWheelInit = (element: any) => {
+    if (!wheelRef.current) {
+      console.log(element);
+
+      wheelRef.current = new Wheel(element, {
+        items: wheelItems,
+      });
+    }
+  };
+  return <div ref={(element) => handleWheelInit(element)}>test</div>;
 }
 
 export default App;
